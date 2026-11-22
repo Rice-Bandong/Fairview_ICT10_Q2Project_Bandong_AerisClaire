@@ -3,314 +3,705 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ICT 10 Q2 Student Showcase | Aeris Bandong</title>
+  <title>ICT 10 Q2 Student Showcase | LilyVal (Aeris Bandong)</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
   <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
 
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
+    }
+
+    body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #b8e1ff 0%, #89cff0 35%, #c7ceea 70%, #b5ead7 100%);
+      background:
+        linear-gradient(
+          45deg,
+          rgba(184, 225, 255, 0.55) 0%,
+          rgba(230, 198, 255, 0.50) 25%,
+          rgba(255, 209, 232, 0.48) 50%,
+          rgba(181, 234, 215, 0.52) 75%,
+          rgba(137, 207, 240, 0.55) 100%
+        ),
+        url('https://i.pinimg.com/originals/c8/67/69/c867698dffb378a1d428efc332f86b39.gif');
+      background-size: 300% 300%, cover;
+      background-position: 0% 50%, center;
+      background-repeat: no-repeat, no-repeat;
+      background-attachment: fixed, fixed;
+      animation: gradientBG 16s ease-in-out infinite;
       min-height: 100vh;
-      color: #092540;
+      color: #2b235a;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      position: relative;
       overflow-x: hidden;
     }
 
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%, center; }
+      50% { background-position: 100% 50%, center; }
+      100% { background-position: 0% 50%, center; }
+    }
+
     header {
-      background: rgba(255, 255, 255, 0.58);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.85);
-      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+      padding: 20px 20px 18px;
       text-align: center;
-      box-shadow: 0 6px 24px rgba(42, 93, 232, 0.12);
+      box-shadow: 0 8px 28px rgba(138, 114, 214, 0.16);
+      z-index: 10;
+      position: relative;
     }
 
     .brand-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       font-weight: 700;
       margin: 0;
-      color: #0b2d5c;
+      background: linear-gradient(135deg, #3b5bdb, #9c36b5, #0ca678);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .brand-sub {
       font-size: 0.85rem;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      color: #1c5d99;
-      margin: 2px 0 6px;
+      color: #5f3dc4;
+      margin: 4px 0 14px;
     }
 
-    .status-pill {
-      display: inline-block;
-      font-size: 0.75rem;
+    .nav-bar-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
       font-weight: 700;
-      padding: 3px 12px;
-      border-radius: 999px;
-      background: rgba(255, 243, 205, 0.9);
-      color: #664d03;
-      border: 1px solid #ffecb5;
-    }
-
-    .status-pill.ready {
-      background: rgba(209, 231, 221, 0.95);
-      color: #0f5132;
-      border-color: #badbcc;
-    }
-
-    .showcase-nav .nav-link {
-      font-weight: 700;
-      color: #092540;
-      background: rgba(255, 255, 255, 0.68);
-      border: 2px solid rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      color: #362b6b;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(243, 232, 255, 0.88));
+      border: 2px solid rgba(255, 255, 255, 0.95);
       border-radius: 999px;
       padding: 8px 18px;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(132, 94, 247, 0.14);
     }
 
-    .showcase-nav .nav-link:hover {
-      background: rgba(255, 255, 255, 0.92);
-      transform: translateY(-2px);
+    .nav-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: linear-gradient(135deg, #e5dbff, #d0ebff);
+      color: #3b5bdb;
     }
 
-    .showcase-nav .nav-link.active {
-      background: linear-gradient(135deg, #2a8bf2, #36d2e0);
+    .nav-btn.active {
+      background: linear-gradient(135deg, #748ffc, #b197fc, #63e6be);
       color: #ffffff;
       border-color: #ffffff;
-      box-shadow: 0 6px 18px rgba(42, 139, 242, 0.35);
+      box-shadow: 0 6px 18px rgba(132, 94, 247, 0.35);
+    }
+
+    main {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 16px 36px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .showcase-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      max-width: 1420px;
+      margin: 0 auto;
+    }
+
+    .left-poster-box {
+      flex: 0 0 auto;
+      width: 320px;
+      padding: 16px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 2.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 16px 34px rgba(132, 94, 247, 0.24);
+      animation: whimsyFloat 4.2s ease-in-out infinite;
+    }
+
+    .left-poster-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 2px solid #ffffff;
+      display: block;
     }
 
     .glass-card {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(22px) saturate(160%);
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
-      border-radius: 28px;
-      border: 2.5px solid rgba(255, 255, 255, 0.92);
-      box-shadow: 0 18px 40px rgba(24, 78, 137, 0.16), inset 0 0 20px rgba(255, 255, 255, 0.7);
-      padding: 32px;
-      max-width: 740px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(22px) saturate(165%);
+      -webkit-backdrop-filter: blur(22px) saturate(165%);
+      border-radius: 30px;
+      border: 2.5px solid rgba(255, 255, 255, 0.95);
+      padding: 32px 30px;
+      max-width: 680px;
       width: 100%;
       margin: 0 auto;
+      animation: whimsyFloat 3.8s ease-in-out infinite, pageFade 0.45s ease;
+    }
+
+    .right-floating-box {
+      flex: 0 0 auto;
+      width: 295px;
+      padding: 16px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 2.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 16px 34px rgba(132, 94, 247, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      animation: whimsyFloat 3.4s ease-in-out infinite;
+    }
+
+    .moving-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .moving-icon-small {
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 16px rgba(132, 94, 247, 0.18);
+      display: block;
+    }
+
+    .big-static-icon {
+      width: 148px;
+      height: 196px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(247, 131, 172, 0.26);
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 1120px) {
+      .showcase-stage {
+        flex-direction: column;
+      }
+
+      .left-poster-box {
+        width: 290px;
+      }
+
+      .left-poster-img {
+        height: 360px;
+      }
+    }
+
+    @keyframes whimsyFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes pageFade {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .section-badge {
       display: inline-block;
-      background: linear-gradient(135deg, #1acaff, #2a5de8);
+      background: linear-gradient(135deg, #845ef7, #5c7cfa, #38d9a9);
       color: #ffffff;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 5px 14px;
+      padding: 5px 15px;
       border-radius: 999px;
       margin-bottom: 10px;
     }
 
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #3b2d71;
+    }
+
+    .sub-desc {
+      color: #5c5482;
+      font-weight: 600;
+    }
+
+    label {
+      color: #493888;
+    }
+
     .form-control {
-      border-radius: 14px;
+      border-radius: 15px;
       border: 2px solid rgba(255, 255, 255, 0.95);
       background: rgba(255, 255, 255, 0.9);
-      padding: 10px 14px;
+      padding: 11px 15px;
       font-weight: 600;
-      color: #092540;
+      color: #2b235a;
     }
 
     .form-control:focus {
       background: #ffffff;
-      border-color: #2a8bf2;
-      box-shadow: 0 0 0 0.2rem rgba(42, 139, 242, 0.2);
+      border-color: #9775fa;
+      box-shadow: 0 0 0 0.22rem rgba(151, 117, 250, 0.25);
     }
 
-    .btn-showcase {
-      background: linear-gradient(135deg, #36d2e0 0%, #1acaff 45%, #2a5de8 100%);
+    .btn-whimsy {
+      background: linear-gradient(135deg, #748ffc 0%, #b197fc 50%, #63e6be 100%);
       color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      padding: 11px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      padding: 12px 22px;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.6px;
+      transition: all 0.28s ease;
+      box-shadow: 0 6px 18px rgba(132, 94, 247, 0.28);
+      text-shadow: 0 1px 2px rgba(43, 35, 90, 0.2);
     }
 
-    .btn-showcase:hover {
+    .btn-whimsy:hover {
       color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(42, 93, 232, 0.3);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 10px 24px rgba(132, 94, 247, 0.4);
+    }
+
+    .btn-exit {
+      background: linear-gradient(135deg, #f783ac 0%, #da77f2 50%, #748ffc 100%);
     }
 
     .result-box {
       background: rgba(255, 255, 255, 0.92);
-      border: 2px solid #7bdff2;
-      border-radius: 18px;
+      border: 2px solid #d0bfff;
+      border-radius: 20px;
       padding: 18px;
       margin-top: 20px;
       min-height: 80px;
+      color: #2b235a;
+      box-shadow: inset 0 0 12px rgba(177, 151, 252, 0.16);
+    }
+
+    .top-photo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .creator-frame {
+      width: 175px;
+      height: 175px;
+      padding: 7px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #fff0f6, #e5dbff, #c3fae8);
+      border: 2.5px solid rgba(255, 255, 255, 0.96);
+      box-shadow: 0 12px 26px rgba(132, 94, 247, 0.22);
+      overflow: hidden;
+    }
+
+    .creator-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 21px;
+      display: block;
+      transform: rotate(-90deg);
+    }
+
+    .work-banner-frame {
+      border-radius: 20px;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(255, 240, 246, 0.85), rgba(237, 242, 255, 0.85), rgba(230, 252, 245, 0.85));
+      border: 2px dashed rgba(151, 117, 250, 0.55);
+      color: #4c2a85;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-align: center;
     }
 
     .creator-pill {
-      background: rgba(255, 255, 255, 0.88);
-      border-left: 4px solid #2a8bf2;
-      border-radius: 14px;
-      padding: 12px 16px;
-      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border-left: 5px solid #9775fa;
+      border-radius: 15px;
+      padding: 11px 15px;
+      margin-bottom: 10px;
+      color: #362b6b;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .creator-pill.pink-accent {
+      border-left-color: #f783ac;
+    }
+
+    .creator-pill.mint-accent {
+      border-left-color: #38d9a9;
+    }
+
+    .creator-pill.blue-accent {
+      border-left-color: #5c7cfa;
+    }
+
+    .creator-pill strong {
+      color: #5f3dc4;
+    }
+
+    .poem-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .poem-link-chip {
+      display: inline-block;
+      background: linear-gradient(135deg, #f3d9fa, #d0ebff);
+      color: #4c2a85;
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 5px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1.5px solid #ffffff;
+      transition: transform 0.2s ease;
+    }
+
+    .poem-link-chip:hover {
+      transform: translateY(-2px);
+      color: #3b5bdb;
+    }
+
+    .quote-you {
+      font-weight: 800;
+      font-style: italic;
+      color: #d6336c;
+      text-decoration: underline wavy #b197fc;
+      font-size: 1.12em;
+    }
+
+    .footer-wrapper {
+      flex-shrink: 0;
+      padding: 0 16px 14px;
+      z-index: 10;
+      position: relative;
     }
 
     footer {
-      background: rgba(255, 255, 255, 0.58);
+      max-width: 1080px;
+      margin: 0 auto;
+      background: rgba(196, 232, 218, 0.78);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-top: 2px solid rgba(255, 255, 255, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 26px;
       padding: 14px 20px;
       text-align: center;
+      color: #163a2c;
+      box-shadow: 0 8px 22px rgba(22, 58, 44, 0.14);
+    }
+
+    footer p {
+      margin: 0;
       font-weight: 700;
-      font-size: 0.88rem;
-      color: #092540;
-      margin-top: 36px;
+      font-size: 0.98rem;
+    }
+
+    footer .footer-sub {
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    footer .footer-sub2 {
+      font-size: 0.76rem;
+      font-weight: 600;
+      opacity: 0.9;
+      margin-top: 3px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1 class="brand-title">ICT 10 Second Quarter Student Showcase</h1>
-    <p class="brand-sub">Python &amp; PyScript Interactive Portfolio • Grade 10 Sapphire</p>
-    <span id="py-status" class="status-pill">Loading Python runtime...</span>
-  </header>
+    <h1 class="brand-title">ᨳICT 10 Second Quarter Student Showcaseഒ</h1>
+    <p class="brand-sub">A Very Interactive Website • Grade 10 Sapphire</p>
 
-  <main class="container my-4">
-
-    <nav class="showcase-nav d-flex flex-wrap justify-content-center gap-2 mb-4" aria-label="Showcase Sections">
-      <button type="button" id="tab-home" class="nav-link active" py-click="switch_section">
-        1. Homepage (Seatwork 1)
+    <nav class="nav-bar-buttons" aria-label="Website Navigation">
+      <button type="button" id="tab-creator" class="nav-btn active" py-click="show_creator">
+        Meet the Creator ꫂ᭪݁
       </button>
-      <button type="button" id="tab-elements" class="nav-link" py-click="switch_section">
-        2. Element Checker (Skills Test)
+      <button type="button" id="tab-sw1" class="nav-btn" py-click="show_sw1">
+        Seatwork 1 ꫂ᭪݁
       </button>
-      <button type="button" id="tab-club" class="nav-link" py-click="switch_section">
-        3. Club Members (Drill #2)
+      <button type="button" id="tab-drill" class="nav-btn" py-click="show_drill">
+        Drill #2 ꫂ᭪݁
       </button>
-      <button type="button" id="tab-creator" class="nav-link" py-click="switch_section">
-        4. Meet the Creator
+      <button type="button" id="tab-skills" class="nav-btn" py-click="show_skills">
+        Skills Test ꫂ᭪݁
       </button>
     </nav>
+  </header>
 
-    <section id="section-home" class="glass-card">
-      <span class="section-badge">Seatwork 1 • Homepage</span>
-      <h2 class="h4 fw-bold mb-2">Glee Club Verification System</h2>
-      <p class="text-muted small mb-4">
-        Enter a candidate's first and last name to check if they are on the official Glee Club roster.
-      </p>
+  <main class="container-fluid">
+    <div class="showcase-stage">
+      <aside id="left-side-decor" class="left-poster-box" aria-label="Creator Poster">
+        <img
+          src="https://i.imgur.com/BRAHKi0.png"
+          referrerpolicy="no-referrer"
+          alt="Creator Poster"
+          class="left-poster-img"
+        >
+      </aside>
 
-      <div class="row g-3 mb-3">
-        <div class="col-sm-6">
-          <label for="verify-fname" class="form-label fw-bold">First Name:</label>
-          <input type="text" id="verify-fname" class="form-control" placeholder="e.g., Aeris">
-        </div>
-        <div class="col-sm-6">
-          <label for="verify-lname" class="form-label fw-bold">Last Name:</label>
-          <input type="text" id="verify-lname" class="form-control" placeholder="e.g., Bandong">
-        </div>
+      <div class="flex-grow-1" style="max-width: 680px; width: 100%;">
+
+        <section id="section-creator" class="glass-card">
+          <div class="text-center">
+            <span class="section-badge">Homepage • Meet the Creator 🌸</span>
+            <h2 class="h3 section-heading mb-1">Meet the Creator ༊࿐ .</h2>
+            <p class="sub-desc small mb-3">Welcome my storybook world 𓏲ּ𝄢 </p>
+          </div>
+
+          <div class="top-photo-wrapper">
+            <div class="creator-frame">
+              <img
+                id="creator-photo"
+                src="https://i.imgur.com/5KjQoIf.jpeg"
+                referrerpolicy="no-referrer"
+                alt="Aeris Claire D. Bandong"
+              >
+            </div>
+          </div>
+
+          <div class="creator-pill">
+            <strong>Name &amp; Section:</strong> Aeris Claire D. Bandong • Grade 10 Sapphire (O.B. Montessori Center)
+          </div>
+
+          <div class="creator-pill pink-accent">
+            <strong>Pen Name:</strong> <span style="color:#c2255c; font-weight:700;">LilyVal</span>
+          </div>
+
+          <div class="creator-pill mint-accent">
+            <strong>Favorite Flower:</strong> <span style="color:#099268; font-weight:700;">Lily of The Valley Flower</span>
+          </div>
+
+          <div class="creator-pill blue-accent">
+            <strong>Favorite Artists:</strong> <span style="color:#3b5bdb; font-weight:700;">Laufey, Chappell Roan, and Conan Grey 🎤︎︎</span>
+          </div>
+
+          <div class="creator-pill pink-accent">
+            <strong>Current Favorite Song:</strong> <span style="color:#9c36b5; font-weight:700;">Castle In Hollywood by Laufey ᯓ𝄞ᯓ</span>
+          </div>
+
+          <div class="creator-pill">
+            <strong>Interests &amp; Hobbies:</strong> Singing, performing, playing the violin, writing poetry and scripts, and exploring botany &amp; floristry ⋆˚꩜｡
+            <div class="mt-2 small">
+              <em>Speaking of my poems, here are a few samples for you to view ✐ᝰ.ᐟ:</em>
+              <div class="poem-links">
+                <a href="https://docs.google.com/document/d/12xIEzTOGlOFQ7cQanM6v_NPQEFCKLF_51VP2O0C2vmQ/edit?usp=sharing" target="_blank" class="poem-link-chip">
+                  Finished Poems Collection ٩(ˊᗜˋ*)و 
+                </a>
+                <a href="https://docs.google.com/document/d/1r7X5EkNR9XsTisBTqmJuTvKr7dLSGnKhDaovTXwU-Hc/edit?tab=t.28l5cueci7he" target="_blank" class="poem-link-chip">
+                  Works in Progress / Unfinished Poems (ᵕ ´ᗜ`)
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="creator-pill mint-accent">
+            <strong>Dreams &amp; Goals in life✨:</strong> Combining business studies with floristry to run a flower shop one day while continuing my family's business.
+          </div>
+
+          <div class="creator-pill mb-0">
+            <strong>Favorite Quote:</strong> <em>"Despite everything, it's still <span class="quote-you">you</span>."</em> — Undertale🩵❤️🧡💛💚💙💜
+          </div>
+        </section>
+
+        <section id="section-sw1" class="glass-card d-none">
+          <span class="section-badge">Seatwork 1 • Glee Club Checker</span>
+          <h2 class="h3 section-heading mb-1">Glee Club Verification System</h2>
+          <p class="sub-desc small mb-3">Candidate Verification System</p>
+
+          <div class="work-banner-frame">
+            ♪ Stage Frame • Glee Club Roster Audition Check ♪
+          </div>
+
+          <div class="mb-3">
+            <label for="first_name" class="form-label fw-bold">First Name:</label>
+            <input type="text" id="first_name" class="form-control" placeholder="Enter first name">
+          </div>
+
+          <div class="mb-3">
+            <label for="last_name" class="form-label fw-bold">Last Name:</label>
+            <input type="text" id="last_name" class="form-control" placeholder="Enter last name">
+          </div>
+
+          <button type="button" id="check_btn" class="btn btn-whimsy w-100" py-click="check_candidate">
+            Enter Audition
+          </button>
+
+          <div id="result_area" class="result-box d-flex align-items-center justify-content-center text-center fw-bold">
+            Enter candidate name to verify membership status.
+          </div>
+        </section>
+
+        <section id="section-drill" class="glass-card d-none">
+          <span class="section-badge">Drill #2 • Set Operators</span>
+          <h2 class="h3 section-heading mb-1">Add New Club Member</h2>
+          <p class="sub-desc small mb-3">Set Operators Manager</p>
+
+          <div class="work-banner-frame">
+            ✦ Union Frame • Combining Grade-Level Sets with <code>|</code> ✦
+          </div>
+
+          <div class="mb-3">
+            <label for="fname" class="form-label fw-bold">First Name:</label>
+            <input type="text" id="fname" class="form-control" placeholder="Enter first name">
+          </div>
+
+          <div class="mb-3">
+            <label for="lname" class="form-label fw-bold">Last Name:</label>
+            <input type="text" id="lname" class="form-control" placeholder="Enter last name">
+          </div>
+
+          <button type="button" class="btn btn-whimsy w-100" py-click="add_member">
+            Submit Member
+          </button>
+
+          <div id="output1" class="result-box fw-bold small">
+ALL MEMBERS:<br>
+TOTAL MEMBERS: 0
+          </div>
+        </section>
+
+        <section id="section-skills" class="glass-card d-none">
+          <span class="section-badge">Skills Test • Periodic Lookup</span>
+          <h2 class="h3 section-heading mb-1">Non-Metal Elements Finder</h2>
+          <p class="sub-desc small mb-3">Enter the symbol of a non-metal element (Example: H, O, Cl, Ne, Rn).</p>
+
+          <div class="work-banner-frame">
+            ✧ Specimen Frame • Non-Metal Elements Dictionary Lookup ✧
+          </div>
+
+          <div class="mb-3">
+            <label for="Element1" class="form-label fw-bold">Element Symbol:</label>
+            <input type="text" id="Element1" class="form-control" placeholder="e.g. H">
+          </div>
+
+          <button type="button" class="btn btn-whimsy w-100" py-click="search_element">
+            Check Details
+          </button>
+
+          <div id="output" class="result-box small">
+            <p class="mb-1"><strong>Symbol:</strong> -</p>
+            <p class="mb-1"><strong>Element:</strong> -</p>
+            <p class="mb-1"><strong>Atomic Number:</strong> -</p>
+            <p class="mb-0"><strong>Atomic Mass:</strong> -</p>
+          </div>
+        </section>
+
+        <section id="section-exit" class="glass-card d-none text-center">
+          <span class="section-badge">Goodbye</span>
+          <h2 class="h3 section-heading my-3">Thank you for checking on my website!</h2>
+          <p class="sub-desc small mb-4">Have a wonderful and whimsical day ahead.</p>
+          <button type="button" class="btn btn-whimsy" py-click="show_creator">
+            Back to Homepage
+          </button>
+        </section>
+
       </div>
 
-      <button type="button" class="btn btn-showcase w-100" py-click="check_candidate">
-        Verify Membership Status
+      <aside id="right-side-decor" class="right-floating-box" aria-label="Moving Icons and Sticker">
+        <div class="moving-stack">
+          <img src="https://i.pinimg.com/originals/7c/f3/14/7cf3144fd6ffe442ed8e0739bf0cb657.gif" alt="" class="moving-icon-small">
+          <img src="https://i.pinimg.com/originals/5c/2d/30/5c2d304ebc93fc569a659d9a20f77576.gif" alt="" class="moving-icon-small">
+        </div>
+        <img src="https://i.pinimg.com/736x/2e/a9/f4/2ea9f44b1c05dbbcffec280c73f26f8d.jpg" alt="" class="big-static-icon">
+      </aside>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <button type="button" id="exit-btn" class="btn btn-whimsy btn-exit" py-click="exit_website">
+        Exit Website
       </button>
-
-      <div id="verify-output" class="result-box d-flex align-items-center justify-content-center text-center">
-        <span class="text-muted small fw-semibold">Enter candidate name to verify membership status.</span>
-      </div>
-    </section>
-
-    <section id="section-elements" class="glass-card d-none">
-      <span class="section-badge">Skills Test • Periodic Lookup</span>
-      <h2 class="h4 fw-bold mb-2">Non-Metal Elements Finder</h2>
-      <p class="text-muted small mb-4">
-        Enter a non-metal symbol (such as <strong>H</strong>, <strong>C</strong>, <strong>O</strong>, <strong>Cl</strong>, <strong>Ne</strong>, or <strong>Rn</strong>) to view its atomic details.
-      </p>
-
-      <div class="mb-3">
-        <label for="element-input" class="form-label fw-bold">Element Symbol:</label>
-        <input type="text" id="element-input" class="form-control" placeholder="e.g., O or Cl">
-      </div>
-
-      <button type="button" class="btn btn-showcase w-100" py-click="search_element">
-        Check Element Details
-      </button>
-
-      <div id="element-output" class="result-box">
-        <p class="mb-1 small"><strong>Symbol:</strong> -</p>
-        <p class="mb-1 small"><strong>Element:</strong> -</p>
-        <p class="mb-1 small"><strong>Atomic Number:</strong> -</p>
-        <p class="mb-0 small"><strong>Atomic Mass:</strong> -</p>
-      </div>
-    </section>
-
-    <section id="section-club" class="glass-card d-none">
-      <span class="section-badge">Drill #2 • Set Operators</span>
-      <h2 class="h4 fw-bold mb-2">Glee Club Members Manager</h2>
-      <p class="text-muted small mb-4">
-        Combine grade-level member sets using the set union operator (<code>|</code>) and add a new member dynamically.
-      </p>
-
-      <div class="row g-3 mb-3">
-        <div class="col-sm-6">
-          <label for="member-fname" class="form-label fw-bold">First Name:</label>
-          <input type="text" id="member-fname" class="form-control" placeholder="Enter first name">
-        </div>
-        <div class="col-sm-6">
-          <label for="member-lname" class="form-label fw-bold">Last Name:</label>
-          <input type="text" id="member-lname" class="form-control" placeholder="Enter last name">
-        </div>
-      </div>
-
-      <button type="button" class="btn btn-showcase w-100" py-click="add_member">
-        Add Member &amp; Update Roster
-      </button>
-
-      <div id="club-output" class="result-box">
-        <div class="small fw-bold">ALL MEMBERS:</div>
-        <div class="small text-muted mt-1">Click "Add Member &amp; Update Roster" to view the combined Glee Club set.</div>
-      </div>
-    </section>
-
-    <section id="section-creator" class="glass-card d-none">
-      <span class="section-badge">Q2 Project • Creator Profile</span>
-      <h2 class="h4 fw-bold mb-2">Meet the Creator</h2>
-      <p class="text-muted small mb-4">
-        A quick look into the creative and academic interests behind this PyScript showcase.
-      </p>
-
-      <div id="creator-output">
-        <div class="creator-pill">
-          <strong>Name &amp; Section:</strong> Aeris Claire D. Bandong • Grade 10 Sapphire (O.B. Montessori Center)
-        </div>
-        <div class="creator-pill">
-          <strong>Interests &amp; Hobbies:</strong> Singing in Glee Club, playing the violin, web development with HTML/CSS/Bootstrap/PyScript, writing poetry and scripts, and exploring botany &amp; floristry.
-        </div>
-        <div class="creator-pill">
-          <strong>Dreams &amp; Goals:</strong> Combining business knowledge with a love for flowers to run a flower shop one day while continuing to build creative digital projects.
-        </div>
-        <div class="creator-pill mb-0">
-          <strong>Favorite Quote:</strong> <em>"Growth begins where curiosity meets care—whether in a garden, a melody, or a line of code."</em>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
-  <footer>
-    <div>Aeris Claire D. Bandong • Grade 10 Sapphire • ICT 10 Q2 Project</div>
-  </footer>
+  <div class="footer-wrapper">
+    <footer>
+      <p>Aeris Claire D. Bandong | Q2 Student Showcase</p>
+      <p class="footer-sub">Grade 10 SAPPHIRE | ICT Quarter 2</p>
+      <p class="footer-sub2">Sources: [Bootstrap, Google Fonts, Pinterest, Imgur, ICT 10 Q2 Assignments SY 2026-2027]</p>
+    </footer>
+  </div>
+
+  <script>
+    function syncSideDecor() {
+      const creatorVisible = !document.getElementById("section-creator").classList.contains("d-none");
+      document.getElementById("left-side-decor").classList.toggle("d-none", !creatorVisible);
+      document.getElementById("right-side-decor").classList.toggle("d-none", !creatorVisible);
+    }
+    document.querySelectorAll(".nav-btn").forEach((btn) => {
+      btn.addEventListener("click", () => setTimeout(syncSideDecor, 30));
+    });
+    document.getElementById("exit-btn").addEventListener("click", () => setTimeout(syncSideDecor, 30));
+  </script>
 
   <script type="py" src="main.py"></script>
 </body>
